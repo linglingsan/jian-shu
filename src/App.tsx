@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {Fragment} from 'react';
+import Header from './common/header'
+import {GlobalStyle} from './style'
 
 const App: React.FC = () => {
-  return (
-    <div className="App">
-     app
-    </div>
-  );
+    return (
+        <Fragment>
+            <Header/>
+            <GlobalStyle/>
+        </Fragment>
+    );
 }
 
 export default App;
