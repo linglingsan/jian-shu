@@ -1,8 +1,16 @@
 import React, {Component} from 'react';
 import {HeaderWrapper, Logo, Nav, NavItem, SearchWrapper, NavSearch, Addition, Button} from './style'
 
+interface Props {
+    focused: boolean
+}
+
 class Header extends Component {
+   state:Props = {
+        focused: false
+    }
     render() {
+        const {focused} = this.state;
         return (
             <HeaderWrapper>
                 <Logo/>
@@ -14,8 +22,10 @@ class Header extends Component {
                         <i className="iconfont">&#xe636;</i>
                     </NavItem>
                     <SearchWrapper>
-                        <NavSearch></NavSearch>
-                        <i className="iconfont zoom">&#xe614;</i>
+                        <NavSearch
+                            className={focused ? 'focused': ''}
+                        ></NavSearch>
+                        <i className={focused ? 'focused iconfont zoom': 'iconfont zoom'}>&#xe614;</i>
                     </SearchWrapper>
                 </Nav>
                 <Addition>
