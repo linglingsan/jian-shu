@@ -1,4 +1,6 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
+import { connect } from 'react-redux'
+import {CSSTransition} from 'react-transition-group'
 import {HeaderWrapper, Logo, Nav, NavItem, SearchWrapper, NavSearch, Addition, Button} from './style'
 
 interface Props {
@@ -6,9 +8,17 @@ interface Props {
 }
 
 class Header extends Component {
-   state:Props = {
+    state: Props = {
         focused: false
     }
+
+    handleInputFocus = () => {
+        this.setState(() => ({focused: true}))
+    }
+    handleInputBlur = () => {
+        this.setState(() => ({focused: false}))
+    }
+
     render() {
         const {focused} = this.state;
         return (
@@ -22,10 +32,18 @@ class Header extends Component {
                         <i className="iconfont">&#xe636;</i>
                     </NavItem>
                     <SearchWrapper>
-                        <NavSearch
-                            className={focused ? 'focused': ''}
-                        ></NavSearch>
-                        <i className={focused ? 'focused iconfont zoom': 'iconfont zoom'}>&#xe614;</i>
+                        <CSSTransition
+                            in={focused}
+                            timeout={200}
+                            classNames="slide"
+                        >
+                            <NavSearch
+                                className={focused ? 'focused' : ''}
+                                onFocus={this.handleInputFocus}
+                                onBlur={this.handleInputBlur}
+                            ></NavSearch>
+                        </CSSTransition>
+                            <i className={focused ? 'focused iconfont zoom' : 'iconfont zoom'}>&#xe614;</i>
                     </SearchWrapper>
                 </Nav>
                 <Addition>
@@ -37,4 +55,18 @@ class Header extends Component {
     }
 }
 
-export default Header
+const mapStateToProps = (state: Props) => {}
+const mapDispathProps = (dispatch: any) => {}
+
+export default connect(mapStateToProps, mapDispathProps)(Header)
+
+
+
+
+
+
+
+
+
+
+
