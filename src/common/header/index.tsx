@@ -51,7 +51,7 @@ const mapStateToProps = (state: Props) => {
         focused: state.focused
     }
 }
-const mapDispathProps = (dispatch: any) => {
+const mapDispathToProps = (dispatch: any) => {
     return {
         handleInputFocus() {
             const action = {
@@ -60,15 +60,15 @@ const mapDispathProps = (dispatch: any) => {
             dispatch(action)
         },
         handleInputBlur() {
-           const action = {
-               type: 'search_blur'
-           }
-           dispatch(action)
+            const action = {
+                type: 'search_blur'
+            }
+            dispatch(action)
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispathProps)(Header)
+export default connect(mapStateToProps, mapDispathToProps)(Header)
 
 
 
