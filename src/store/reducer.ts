@@ -2,8 +2,8 @@ import {combineReducers} from 'redux'
 
 import headerReducer from '../common/header/store/reducer';
 
-/*export default combineReducers({
-    hearder: headerReducer
-})*/
+export default combineReducers({
+    header: headerReducer
+})
 
-export default headerReducer
+// export default headerReducer

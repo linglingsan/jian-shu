@@ -4,12 +4,12 @@ import {CSSTransition} from 'react-transition-group'
 import {HeaderWrapper, Logo, Nav, NavItem, SearchWrapper, NavSearch, Addition, Button} from './style'
 
 interface Props {
-    focused?: boolean
+    header: any
     handleInputFocus: () => void
     handleInputBlur: () => void
 }
 
-class Header extends Component<Props> {
+class Header extends Component<any> {
     render() {
         const {focused} = this.props
         return (
@@ -30,8 +30,8 @@ class Header extends Component<Props> {
                         >
                             <NavSearch
                                 className={focused ? 'focused' : ''}
-                                onFocus={this.props.handleInputFocus}
-                                onBlur={this.props.handleInputBlur}
+                                onFocus={(this.props as Props).handleInputFocus}
+                                onBlur={(this.props as Props).handleInputBlur}
                             ></NavSearch>
                         </CSSTransition>
                         <i className={focused ? 'focused iconfont zoom' : 'iconfont zoom'}>&#xe614;</i>
@@ -46,9 +46,11 @@ class Header extends Component<Props> {
     }
 }
 
-const mapStateToProps = (state: Props) => {
+const mapStateToProps = (state: any) => {
+    // const {header} = state
+    // console.log(header);
     return {
-        focused: state.focused
+        focused: state.header.focused
     }
 }
 const mapDispathToProps = (dispatch: any) => {

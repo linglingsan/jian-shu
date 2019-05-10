@@ -6,9 +6,13 @@ import {GlobalFontStyle} from './statics/iconfont/iconfont'
 import store from './store'
 
 const App: React.FC = () => {
+
     return (
         <Provider store={store}>
+            {
+
             <Header/>
+            }
             <GlobalStyle/>
             <GlobalFontStyle/>
         </Provider>
