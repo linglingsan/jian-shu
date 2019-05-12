@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 
-class Detail extends Component {
+class Writer extends Component {
     render() {
         return (
             <div>
-                Detail
+                Writer~
             </div>
         );
     }
 }
 
-export default Detail
+export default Writer
