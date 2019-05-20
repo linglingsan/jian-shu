@@ -40,3 +40,12 @@ export const getMoreList = (page: number) => {
             })
     }
 }
+
+export const toggleTopShow = (show: boolean) => ({
+    type: constants.TOGGLE_SCROLL_TOP,
+    show
+})
+
+
+
+

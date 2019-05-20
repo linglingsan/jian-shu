@@ -6,12 +6,25 @@ import List from './components/List'
 import Recommend from './components/Recommend'
 import Writer from './components/Writer'
 import {actionCreators} from './store'
-import {HomeWrapper, HomeLeft, HomeRight} from './style';
+import {HomeWrapper, HomeLeft, HomeRight, BackTop} from './style';
 
 class Home extends Component<any, any> {
 
     componentDidMount(): void {
         this.props.changeHomeData()
+        this.bindEvents()
+    }
+
+    bindEvents(): void {
+        window.addEventListener('scroll', this.props.changeScrollTopShow);
+    }
+
+    componentWillUnmount(): void {
+        window.removeEventListener('scroll', this.props.changeScrollTopShow);
+    }
+
+    handleScrollTop() {
+        window.scrollTo(0, 0);
     }
 
     render() {
@@ -28,21 +41,28 @@ class Home extends Component<any, any> {
                     <Recommend/>
                     <Writer/>
                 </HomeRight>
+                {this.props.showScroll ? <BackTop onClick={this.handleScrollTop}>顶部</BackTop> : null}
             </HomeWrapper>
         );
     }
 }
 
 const mapStateToProps = (state: any) => ({
-
+    showScroll: state.getIn(['home', 'showScroll'])
 })
 
 const mapDispatchToProps = (dispatch: any) => ({
     changeHomeData() {
         dispatch(actionCreators.getHomeInfo())
+    },
+    changeScrollTopShow() {
+        if (document.documentElement.scrollTop > 100) {
+            dispatch(actionCreators.toggleTopShow(true))
+        } else {
+            dispatch(actionCreators.toggleTopShow(false))
+        }
     }
 })
-
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

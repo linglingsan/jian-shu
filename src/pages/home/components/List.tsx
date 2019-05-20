@@ -1,22 +1,25 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {actionCreators} from '../store'
-import { ListItem, ListInfo, LoadMore } from '../style';
+import {ListItem, ListInfo, LoadMore} from '../style';
+import {Link} from 'react-router-dom';
 
-class List extends Component<any, any>{
+class List extends Component<any, any> {
     render() {
         const {list, getMoreList, page} = this.props
         return (
             <div>
                 {
-                    list.map((item:any, index:number) => (
-                        <ListItem key={index}>
-                            <img className='pic' src={item.get('imgUrl')} alt=""/>
-                            <ListInfo>
-                                <h3 className='title'>{item.get('title')}</h3>
-                                <p className='desc'>{item.get('desc')}</p>
-                            </ListInfo>
-                        </ListItem>
+                    list.map((item: any, index: number) => (
+                        <Link key={index} to={'/detail/' + item.get('id')}>
+                            <ListItem key={index}>
+                                <img className='pic' src={item.get('imgUrl')} alt=""/>
+                                <ListInfo>
+                                    <h3 className='title'>{item.get('title')}</h3>
+                                    <p className='desc'>{item.get('desc')}</p>
+                                </ListInfo>
+                            </ListItem>
+                        </Link>
                     ))
                 }
                 <LoadMore onClick={() => getMoreList(page)}>更多文字</LoadMore>
