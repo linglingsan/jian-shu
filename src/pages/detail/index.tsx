@@ -19,10 +19,10 @@ class Detail extends Component<any,  any> {
     }
 }
 
-const mapStateToProps = (state:any) => {
-    title: state.getIn(['detail', 'title'])
+const mapStateToProps = (state:any) => ({
+    title: state.getIn(['detail', 'title']),
     content: state.getIn(['detail', 'content'])
-}
+})
 const mapDispatchToProps = (dispatch: any) => ({
     getDetail(id: number) {
         dispatch(actionCreators.getDetail(id));
